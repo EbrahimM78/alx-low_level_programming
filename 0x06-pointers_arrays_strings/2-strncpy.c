@@ -2,22 +2,24 @@
 
 /**
  * _strncpy - copy two strings only taking n bytes from src
- * @dest: first string to be added to
- * @src: second string to be added
+ * @dest: Buffer storage of sting copy
+ * @src: source string
  * @n: number of bites to use from src
- * Return: concatenated string
+ * Return: pointer to the resulting sting dest
  */
 
 char *_strncpy(char *dest, char *src, int n)
 {
-char *temp = dest;
+  int index = 0, src_len = 0;
 
-for (; n != 0 && *src != '\0'; n--, src++)
-{
-*temp = *src;
-temp++;
-}
-for (; n != 0 && *temp != '\0'; n--, temp++)
-*temp = '\0';
+while (src[index++])
+src_len++;
+
+for (index = 0; src[index] && index < n; index++)
+dest[index] = src[index];
+
+for (index = src_len; index < n; index++)
+dest[index] = '\0';
+
 return (dest);
 }
