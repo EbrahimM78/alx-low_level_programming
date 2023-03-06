@@ -1,0 +1,1 @@
+This is the third part of the activity c: Arrays,pointers and strings
