@@ -9,15 +9,13 @@
  * Return: number of bits.
  */
 
-unsigned int flip_bits(unsigned long int n, unsigned long int m)
+int clear_bit(unsigned long int *n, unsigned int index)
 {
-unsigned long int coin = n ^ m, bits = 0;
+int mark;
 
-while (coin > 0)
-{
-bits += (coin & 1);
-coin >>= 1;
-}
-
-return (bits);
+if (index > 63 || !n)
+return (-1);
+mark = 1 << index;
+*n = (*n & ~mark) | ((0 << index) & mark);
+return (1);
 }
