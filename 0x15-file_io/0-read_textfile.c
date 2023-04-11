@@ -10,39 +10,28 @@
 
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-char *buff;
-int ab;
-size_t file, check;
+ssize_t a, b, c;
+char *buffer;
 
-if (!filename || !letters)
+if (filename == NULL)
 return (0);
 
-buff = malloc(letters);
-if (!buff)
+buffer = malloc(sizeof(char) * letters);
+if (buffer == NULL)
 return (0);
 
-ab = open(filename, O_RDONLY);
-if (ab == -1)
+a = open(filename, O_RDONLY);
+b = read(o, buffer, letters);
+c = write(STDOUT_FILENO, buffer, r);
+
+if (a == -1 || b == -1 || c == -1 || c != b)
 {
-free(buff);
+free(buffer);
 return (0);
 }
 
-file = read(ab, buff, letters);
-if (file < 1)
-{
-free(buff);
-close(ab);
-return (0);
-}
+free(buffer);
+close(a);
 
-check = write(STDOUT_FILENO, buff, file);
-
-free(buff);
-close(ab);
-
-if (!check || check != file)
-return (0);
-
-return (file);
+return (c);
 }
