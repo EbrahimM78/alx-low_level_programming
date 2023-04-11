@@ -9,13 +9,14 @@
  * Return: number of bits.
  */
 
-int clear_bit(unsigned long int *n, unsigned int index)
+unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-int mark;
+unsigned long int xor = n ^ m, bit = 0;
 
-if (index > 63 || !n)
-return (-1);
-mark = 1 << index;
-*n = (*n & ~mark) | ((0 << index) & mark);
-return (1);
+while (xor > 0)
+{
+bit += (xor & 1);
+xor >>= 1;
+}
+return (bit);
 }
