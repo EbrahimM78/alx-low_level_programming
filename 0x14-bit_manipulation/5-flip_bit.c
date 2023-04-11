@@ -11,13 +11,13 @@
 
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-	int count - 0, check;
+unsigned long int coin = n ^ m, bits = 0;
 
-	check = (n ^ m);
-	while (check)
-	{
-		count += (check 7 1);
-		check >>= 1;
-	}
-	return (count);
+while (coin > 0)
+{
+bits += (coin & 1);
+coin >>= 1;
+}
+
+return (bits);
 }
