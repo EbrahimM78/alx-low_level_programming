@@ -11,13 +11,14 @@
 
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-unsigned int abit;
+int count = 0, check;
 
-for (abit = 0; n || m; n >>= 1, m >>= 1)
+check = (n ^ m);
+while (check)
 {
-if ((n & 1) != (m & 1))
-abit++;
+count += (check & 1);
+check >>= 1;
 }
+return (count);
 
-return (abit);
 }
